@@ -1,0 +1,123 @@
+.main {
+    display: flex;
+    background: #ffffff;
+    border-radius: 12px;
+    width: 100%;
+    transition: all 0.5s;
+}
+.regular-main-shadow:focus-within {
+    box-shadow: 0px 4px 32px #dae0ec;
+}
+.regular-main-shadow {
+    box-shadow: 0px 4px 8px #ebeef5;
+}
+.today-main-shadow:focus-within {
+    box-shadow: 0px 4px 32px rgba(255, 0, 110, 0.12);
+}
+.today-main-shadow {
+    box-shadow: 0px 4px 8px rgba(255, 0, 110, 0.12);
+}
+.tomorrow-main-shadow:focus-within {
+    box-shadow: 0px 4px 32px rgba(251, 86, 7, 0.12);
+}
+.tomorrow-main-shadow {
+    box-shadow: 0px 4px 8px rgba(251, 86, 7, 0.12);
+}
+.this-week-main-shadow:focus-within {
+    box-shadow: 0px 4px 32px rgba(255, 190, 11, 0.12);
+}
+.this-week-main-shadow {
+    box-shadow: 0px 4px 8px rgba(255, 190, 11, 0.12);
+}
+
+@media (max-width: 800px) {
+    .main input {
+        width: 100%;
+        margin-top: 20px;
+    }
+    .main {
+        overflow: hidden;
+        display: block;
+        text-align: center;
+    }
+}
+
+.regular-capsule {
+    background: #f9fafb;
+}
+
+.today-capsule {
+    color: #ff006e;
+    background: rgba(255, 0, 110, 0.1);
+}
+
+.tomorrow-capsule {
+    color: #fb5607;
+    background: rgba(251, 86, 7, 0.08);
+}
+
+.this-week-capsule {
+    color: #ffbe0b;
+    background: rgba(255, 190, 11, 0.08);
+}
+
+.capsule {
+    display: inline-block;
+    cursor: pointer;
+    font-size: 16px;
+    border: 1px solid #ffffff;
+    box-sizing: border-box;
+    border-radius: 100px;
+    margin: 20px 2px;
+    padding: 12px 16px;
+}
+
+.plus {
+    margin-left: 21px;
+    margin-right: 28px;
+}
+.today-plus {
+    color: #fff;
+    background: #ff006e;
+}
+.tomorrow-plus {
+    color: #fff;
+    background: #fb5607;
+}
+.this-week-plus {
+    color: #fff;
+    background: #ffbe0b;
+}
+
+.main input,
+.main input:focus,
+.main input:active {
+    border: none;
+    outline: none;
+    appearance: none;
+    -webkit-appearance: none;
+}
+
+.main input {
+    flex: 1 1;
+    font-size: 24px;
+    margin-left: 33px;
+    margin-right: 5px;
+}
+.regular-input {
+    caret-color: #0a1323;
+}
+.today-input {
+    caret-color: #ff006e;
+}
+.tomorrow-input {
+    caret-color: #fb5607;
+}
+.this-week-input {
+    caret-color: #ffbe0b;
+}
+
+.list-wrapper {
+    margin-top: 56px;
+    margin-bottom: 56px;
+}
