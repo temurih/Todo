@@ -1,11 +1,16 @@
 .item-wrapper {
-    flex-wrap: wrap;
     justify-content: space-between;
     margin-bottom: 20px;
+    overflow: auto;
 }
 
 .item-content {
     cursor: pointer;
+}
+
+.item-actions {
+    flex-shrink: 0;
+    margin-left: 10px;
 }
 
 .item-wrapper,
