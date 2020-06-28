@@ -1,10 +1,24 @@
 import React from 'react';
-import { Todo, STATUS } from '../../App';
+import { Todo, STATUS, DATE } from '../../App';
 import './item.css';
 
 const circleIcon = '/icons/circle-icon.svg';
 export const xIcon = '/icons/x-icon.svg';
 export const arrowDownIcon = '/icons/arrow-down-icon.svg';
+
+const getLabel = (date: DATE | undefined): string => {
+    switch (date) {
+        case DATE.TODAY:
+            return 'Today';
+        case DATE.TOMORROW:
+            return 'Tomorrow';
+        case DATE.THIS_WEEK:
+            return 'This Week';
+
+        default:
+            return 'No Date';
+    }
+};
 
 interface ItemProps {
     item: Todo;
@@ -32,7 +46,7 @@ const Item: React.FC<ItemProps> = ({ item, handleStatusChange }) => {
                         }
                     `}
                 >
-                    {item.date || 'No Date'}
+                    {getLabel(item.date)}
                     <img
                         className="arrow-down"
                         src={arrowDownIcon}
