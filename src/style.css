@@ -7,6 +7,7 @@ body {
     font-size: 18px;
     color: #6b6f7c;
     background: #f9fafc;
+    letter-spacing: -0.02em;
 }
 
 .content {

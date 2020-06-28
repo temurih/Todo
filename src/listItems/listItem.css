@@ -27,7 +27,6 @@
     display: inline-block;
     font-size: 24px;
     font-weight: 600;
-    letter-spacing: -0.02em;
 }
 
 .sub-text {
@@ -35,6 +34,6 @@
 }
 
 .item {
-    margin-top: 26px;
+    margin-top: 44px;
     margin-bottom: 13px;
 }

@@ -1,12 +1,14 @@
 import React from 'react';
-import { Todo } from '../App';
+import { Todo, STATUS } from '../App';
 import './listItem.css';
+import Item from './item/Item';
 
 interface ListItemsProps {
     text: string;
     iconUrl: string;
     list: Todo[];
     color: string;
+    handleStatusChange: (todo: Todo, newStatus: STATUS) => unknown;
 }
 
 const ListItems: React.FC<ListItemsProps> = ({
@@ -14,6 +16,7 @@ const ListItems: React.FC<ListItemsProps> = ({
     iconUrl,
     list,
     color,
+    handleStatusChange,
 }) => {
     const style = {
         color,
@@ -33,9 +36,16 @@ const ListItems: React.FC<ListItemsProps> = ({
             </div>
             {list.length > 0 && (
                 <div className="item">
-                    {list.map((l) => (
-                        <div key={l.id}>{l.text}</div>
-                    ))}
+                    {list.map((l) => {
+                        if (l.status === STATUS.PENDING)
+                            return (
+                                <Item
+                                    key={l.id}
+                                    item={l}
+                                    handleStatusChange={handleStatusChange}
+                                />
+                            );
+                    })}
                 </div>
             )}
         </div>

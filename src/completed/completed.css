@@ -1,0 +1,23 @@
+.completed {
+    margin: 50px auto;
+    text-align: center;
+}
+
+.completed-item {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 14px 32px;
+}
+
+.completed-wrapper {
+    margin-bottom: 50px;
+}
+
+.pointer,
+.completed-item .item-select {
+    cursor: pointer;
+}
+
+.completed-item .item-content {
+    cursor: auto;
+}
