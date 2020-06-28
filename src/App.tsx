@@ -70,7 +70,7 @@ const App = () => {
                 case DATE.TOMORROW:
                     setTomorrowTodo((t) => [...tomorrowTodo, todo]);
                     return;
-                case DATE.TODAY:
+                case DATE.THIS_WEEK:
                     setThisWeekTodo((t) => [...thisWeekTodo, todo]);
                     return;
 
@@ -78,8 +78,8 @@ const App = () => {
                     setUnknownTodo((t) => [...unknownTodo, todo]);
                     break;
             }
-            // eslint-disable-next-line
         },
+        // eslint-disable-next-line
         [completed],
     );
 
@@ -115,8 +115,8 @@ const App = () => {
                     break;
             }
             setCompleted((c) => [...c, todo]);
-            // eslint-disable-next-line
         },
+        // eslint-disable-next-line
         [todayTodo, tomorrowTodo, unknownTodo],
     );
 

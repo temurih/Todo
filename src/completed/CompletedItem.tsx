@@ -1,6 +1,6 @@
 import React from 'react';
 import { Todo } from '../App';
-import { arrowDownIcon, xIcon } from '../listItems/item/Item';
+import { xIcon } from '../listItems/item/Item';
 
 const completedIcon = '/icons/completed-icon.svg';
 

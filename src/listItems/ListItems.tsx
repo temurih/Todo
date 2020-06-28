@@ -45,6 +45,7 @@ const ListItems: React.FC<ListItemsProps> = ({
                                     handleStatusChange={handleStatusChange}
                                 />
                             );
+                        return null;
                     })}
                 </div>
             )}

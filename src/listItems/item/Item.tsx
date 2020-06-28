@@ -2,9 +2,9 @@ import React from 'react';
 import { Todo, STATUS, DATE } from '../../App';
 import './item.css';
 
-const circleIcon = '/icons/circle-icon.svg';
 export const xIcon = '/icons/x-icon.svg';
-export const arrowDownIcon = '/icons/arrow-down-icon.svg';
+const circleIcon = '/icons/circle-icon.svg';
+const arrowDownIcon = '/icons/arrow-down-icon.svg';
 
 const getLabel = (date: DATE | undefined): string => {
     switch (date) {
