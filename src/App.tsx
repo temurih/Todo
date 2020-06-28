@@ -36,7 +36,7 @@ const App = () => {
     const [unknownTodo, setUnknownTodo] = useState<Todo[]>([]);
     const [completed, setCompleted] = useState<Todo[]>([]);
 
-    const handleTodo = useCallback(
+    const handleAddTodo = useCallback(
         (todo: Todo) => {
             switch (todo.date) {
                 case DATE.TODAY:
@@ -57,7 +57,7 @@ const App = () => {
         [setTodayTodo, setTomorrowTodo, setThisWeekTodo, setUnknownTodo],
     );
 
-    const handleUncomplete = useCallback(
+    const handleUncompleted = useCallback(
         (todo: Todo) => {
             const index = completed.findIndex((c) => c.id === todo.id);
             completed.splice(index, 1);
@@ -83,8 +83,46 @@ const App = () => {
         [completed],
     );
 
-    const handleStatusChange = useCallback(
-        (todo: Todo, newStatus: STATUS) => {
+    const handleDelete = (todo: Todo) => {
+        let index = -1;
+        if (todo.status === STATUS.COMPLETED) {
+            index = completed.findIndex((c) => c.id === todo.id);
+            if (index === -1) return;
+            completed.splice(index, 1);
+            setCompleted([...completed]);
+            return;
+        }
+        switch (todo.date) {
+            case DATE.TODAY:
+                index = todayTodo.findIndex((t) => t.id === todo.id);
+                if (index === -1) return;
+                todayTodo.splice(index, 1);
+                setTodayTodo([...todayTodo]);
+                return;
+            case DATE.TOMORROW:
+                index = tomorrowTodo.findIndex((t) => t.id === todo.id);
+                if (index === -1) return;
+                tomorrowTodo.splice(index, 1);
+                setTomorrowTodo([...tomorrowTodo]);
+                return;
+            case DATE.THIS_WEEK:
+                index = thisWeekTodo.findIndex((t) => t.id === todo.id);
+                if (index === -1) return;
+                thisWeekTodo.splice(index, 1);
+                setThisWeekTodo([...thisWeekTodo]);
+                return;
+
+            default:
+                index = unknownTodo.findIndex((t) => t.id === todo.id);
+                if (index === -1) return;
+                unknownTodo.splice(index, 1);
+                setUnknownTodo([...unknownTodo]);
+                return;
+        }
+    };
+
+    const handleCompleted = useCallback(
+        (todo: Todo) => {
             let index = -1;
             todo.status = STATUS.COMPLETED;
             switch (todo.date) {
@@ -123,38 +161,46 @@ const App = () => {
     return (
         <div className="content">
             <img src={logo} title="logo" alt="logo" />
-            <InputBar handleAdd={handleTodo} />
+            <InputBar handleAdd={handleAddTodo} />
             <div className="list-wrapper">
                 <ListItems
                     text="Today"
                     iconUrl={todayIcon}
                     list={todayTodo}
                     color="#ff006e"
-                    handleStatusChange={handleStatusChange}
+                    handleCompleted={handleCompleted}
+                    handleDelete={handleDelete}
                 />
                 <ListItems
                     text="Tomorrow"
                     iconUrl={tomorrowIcon}
                     list={tomorrowTodo}
                     color="#fb5607"
-                    handleStatusChange={handleStatusChange}
+                    handleCompleted={handleCompleted}
+                    handleDelete={handleDelete}
                 />
                 <ListItems
                     text="This Week"
                     iconUrl={thisWeekIcon}
                     list={thisWeekTodo}
                     color="#ffbe0b"
-                    handleStatusChange={handleStatusChange}
+                    handleCompleted={handleCompleted}
+                    handleDelete={handleDelete}
                 />
                 <ListItems
                     text="No Date"
                     iconUrl={noDateIcon}
                     list={unknownTodo}
                     color="#9D9FA7"
-                    handleStatusChange={handleStatusChange}
+                    handleCompleted={handleCompleted}
+                    handleDelete={handleDelete}
                 />
             </div>
-            <Completed handleUncomplete={handleUncomplete} list={completed} />
+            <Completed
+                handleUncompleted={handleUncompleted}
+                handleDelete={handleDelete}
+                list={completed}
+            />
         </div>
     );
 };

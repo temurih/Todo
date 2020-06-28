@@ -5,10 +5,15 @@ import { Todo } from '../App';
 
 interface CompletedProps {
     list: Todo[];
-    handleUncomplete: (todo: Todo) => unknown;
+    handleUncompleted: (todo: Todo) => unknown;
+    handleDelete: (todo: Todo) => unknown;
 }
 
-const Completed: React.FC<CompletedProps> = ({ list, handleUncomplete }) => {
+const Completed: React.FC<CompletedProps> = ({
+    list,
+    handleUncompleted,
+    handleDelete,
+}) => {
     const [showList, setShowList] = useState<boolean>(false);
     const handleShow = () => setShowList((s) => !s);
     if (list.length === 0)
@@ -22,7 +27,8 @@ const Completed: React.FC<CompletedProps> = ({ list, handleUncomplete }) => {
             {showList &&
                 list.map((l) => (
                     <CompletedItem
-                        handleUncomplete={handleUncomplete}
+                        handleUncompleted={handleUncompleted}
+                        handleDelete={handleDelete}
                         item={l}
                         key={l.id}
                     />

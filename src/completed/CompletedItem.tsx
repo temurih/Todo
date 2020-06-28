@@ -6,14 +6,17 @@ const completedIcon = '/icons/completed-icon.svg';
 
 interface CompletedItemProps {
     item: Todo;
-    handleUncomplete: (todo: Todo) => unknown;
+    handleUncompleted: (todo: Todo) => unknown;
+    handleDelete: (todo: Todo) => unknown;
 }
 
 const CompletedItem: React.FC<CompletedItemProps> = ({
     item,
-    handleUncomplete,
+    handleUncompleted,
+    handleDelete,
 }) => {
-    const handleMarkAsUncomplete = () => handleUncomplete(item);
+    const handleMarkAsUncompleted = () => handleUncompleted(item);
+    const handleStatusDeleted = () => handleDelete(item);
     return (
         <div className="completed-item item-wrapper">
             <div className="item-content">
@@ -23,11 +26,17 @@ const CompletedItem: React.FC<CompletedItemProps> = ({
             <div className="item-actions">
                 <div
                     className="item-select today-item-select"
-                    onClick={handleMarkAsUncomplete}
+                    onClick={handleMarkAsUncompleted}
                 >
-                    Mark as uncomplete
+                    Mark as uncompleted
                 </div>
-                <img src={xIcon} title="delete" alt="delete" />
+                <img
+                    src={xIcon}
+                    title="delete"
+                    alt="delete"
+                    className="delete-icon"
+                    onClick={handleStatusDeleted}
+                />
             </div>
         </div>
     );

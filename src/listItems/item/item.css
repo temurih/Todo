@@ -4,7 +4,8 @@
     overflow: auto;
 }
 
-.item-content {
+.item-content,
+.delete-icon {
     cursor: pointer;
 }
 

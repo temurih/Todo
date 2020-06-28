@@ -1,10 +1,10 @@
 import React from 'react';
-import { Todo, STATUS, DATE } from '../../App';
+import { Todo, DATE } from '../../App';
 import './item.css';
+import ArrowDown from './ArrowDown';
 
 export const xIcon = '/icons/x-icon.svg';
 const circleIcon = '/icons/circle-icon.svg';
-const arrowDownIcon = '/icons/arrow-down-icon.svg';
 
 const getLabel = (date: DATE | undefined): string => {
     switch (date) {
@@ -20,18 +20,36 @@ const getLabel = (date: DATE | undefined): string => {
     }
 };
 
+const getFillColor = (date: DATE | undefined): string => {
+    switch (date) {
+        case DATE.TODAY:
+            return '#ff006e';
+        case DATE.TOMORROW:
+            return '#fb5607';
+        case DATE.THIS_WEEK:
+            return '#ffbe0b';
+
+        default:
+            return '#6b6f7c';
+    }
+};
+
 interface ItemProps {
     item: Todo;
-    handleStatusChange: (todo: Todo, newStatus: STATUS) => unknown;
+    handleCompleted: (todo: Todo) => unknown;
+    handleDelete: (todo: Todo) => unknown;
 }
 
-const Item: React.FC<ItemProps> = ({ item, handleStatusChange }) => {
-    const handleCompleted = () => {
-        handleStatusChange(item, STATUS.COMPLETED);
+const Item: React.FC<ItemProps> = ({ item, handleCompleted, handleDelete }) => {
+    const handleStatusCompleted = () => {
+        handleCompleted(item);
+    };
+    const handleStatusDeleted = () => {
+        handleDelete(item);
     };
     return (
         <div className="item-wrapper">
-            <div className="item-content" onClick={handleCompleted}>
+            <div className="item-content" onClick={handleStatusCompleted}>
                 <img src={circleIcon} title="item" alt="item" />
                 <div className="item-text">{item.text}</div>
             </div>
@@ -47,14 +65,18 @@ const Item: React.FC<ItemProps> = ({ item, handleStatusChange }) => {
                     `}
                 >
                     {getLabel(item.date)}
-                    <img
+                    <ArrowDown
+                        fill={getFillColor(item.date)}
                         className="arrow-down"
-                        src={arrowDownIcon}
-                        title="arrow-down"
-                        alt="arrow-down"
                     />
                 </div>
-                <img src={xIcon} title="delete" alt="delete" />
+                <img
+                    src={xIcon}
+                    title="delete"
+                    alt="delete"
+                    className="delete-icon"
+                    onClick={handleStatusDeleted}
+                />
             </div>
         </div>
     );

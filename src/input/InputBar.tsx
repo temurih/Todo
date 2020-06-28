@@ -8,7 +8,6 @@ interface InputBarProps {
 }
 
 const ENTER_KEY_CODE = 13;
-const plusIcon = '/icons/plus-icon.svg';
 
 const InputBar: React.FC<InputBarProps> = ({ handleAdd }) => {
     const [date, setDate] = useState<DATE | undefined>();

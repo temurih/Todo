@@ -8,7 +8,8 @@ interface ListItemsProps {
     iconUrl: string;
     list: Todo[];
     color: string;
-    handleStatusChange: (todo: Todo, newStatus: STATUS) => unknown;
+    handleCompleted: (todo: Todo) => unknown;
+    handleDelete: (todo: Todo) => unknown;
 }
 
 const ListItems: React.FC<ListItemsProps> = ({
@@ -16,7 +17,8 @@ const ListItems: React.FC<ListItemsProps> = ({
     iconUrl,
     list,
     color,
-    handleStatusChange,
+    handleCompleted,
+    handleDelete,
 }) => {
     const style = {
         color,
@@ -42,7 +44,8 @@ const ListItems: React.FC<ListItemsProps> = ({
                                 <Item
                                     key={l.id}
                                     item={l}
-                                    handleStatusChange={handleStatusChange}
+                                    handleCompleted={handleCompleted}
+                                    handleDelete={handleDelete}
                                 />
                             );
                         return null;
