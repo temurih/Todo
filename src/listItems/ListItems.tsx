@@ -1,5 +1,5 @@
 import React from 'react';
-import { Todo, STATUS } from '../App';
+import { Todo, STATUS, DATE } from '../App';
 import './listItem.css';
 import Item from './item/Item';
 
@@ -10,6 +10,7 @@ interface ListItemsProps {
     color: string;
     handleCompleted: (todo: Todo) => unknown;
     handleDelete: (todo: Todo) => unknown;
+    handleDateChange: (todo: Todo, newDate: DATE | undefined) => unknown;
 }
 
 const ListItems: React.FC<ListItemsProps> = ({
@@ -19,6 +20,7 @@ const ListItems: React.FC<ListItemsProps> = ({
     color,
     handleCompleted,
     handleDelete,
+    handleDateChange,
 }) => {
     const style = {
         color,
@@ -46,6 +48,7 @@ const ListItems: React.FC<ListItemsProps> = ({
                                     item={l}
                                     handleCompleted={handleCompleted}
                                     handleDelete={handleDelete}
+                                    handleDateChange={handleDateChange}
                                 />
                             );
                         return null;

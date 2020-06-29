@@ -22,6 +22,8 @@ export enum DATE {
     THIS_WEEK = 'this-week',
 }
 
+export const options = [DATE.TODAY, DATE.TOMORROW, DATE.THIS_WEEK, undefined];
+
 export interface Todo {
     id: number;
     text: string;
@@ -123,8 +125,8 @@ const App = () => {
 
     const handleCompleted = useCallback(
         (todo: Todo) => {
-            let index = -1;
             todo.status = STATUS.COMPLETED;
+            let index = -1;
             switch (todo.date) {
                 case DATE.TODAY:
                     index = todayTodo.findIndex((t) => t.id === todo.id);
@@ -158,6 +160,41 @@ const App = () => {
         [todayTodo, tomorrowTodo, unknownTodo],
     );
 
+    const handleDateChange = (todo: Todo, newDate: DATE | undefined) => {
+        if (todo.date === newDate) return;
+        const currentDate = todo.date;
+        todo.date = newDate;
+        let index = -1;
+        switch (currentDate) {
+            case DATE.TODAY:
+                index = todayTodo.findIndex((t) => t.id === todo.id);
+                if (index === -1) return;
+                todayTodo.splice(index, 1);
+                setTodayTodo([...todayTodo]);
+                break;
+            case DATE.TOMORROW:
+                index = tomorrowTodo.findIndex((t) => t.id === todo.id);
+                if (index === -1) return;
+                tomorrowTodo.splice(index, 1);
+                setTomorrowTodo([...tomorrowTodo]);
+                break;
+            case DATE.THIS_WEEK:
+                index = thisWeekTodo.findIndex((t) => t.id === todo.id);
+                if (index === -1) return;
+                thisWeekTodo.splice(index, 1);
+                setThisWeekTodo([...thisWeekTodo]);
+                break;
+
+            default:
+                index = unknownTodo.findIndex((t) => t.id === todo.id);
+                if (index === -1) return;
+                unknownTodo.splice(index, 1);
+                setUnknownTodo([...unknownTodo]);
+                break;
+        }
+        handleAddTodo(todo);
+    };
+
     return (
         <div className="content">
             <img src={logo} title="logo" alt="logo" />
@@ -170,6 +207,7 @@ const App = () => {
                     color="#ff006e"
                     handleCompleted={handleCompleted}
                     handleDelete={handleDelete}
+                    handleDateChange={handleDateChange}
                 />
                 <ListItems
                     text="Tomorrow"
@@ -178,6 +216,7 @@ const App = () => {
                     color="#fb5607"
                     handleCompleted={handleCompleted}
                     handleDelete={handleDelete}
+                    handleDateChange={handleDateChange}
                 />
                 <ListItems
                     text="This Week"
@@ -186,6 +225,7 @@ const App = () => {
                     color="#ffbe0b"
                     handleCompleted={handleCompleted}
                     handleDelete={handleDelete}
+                    handleDateChange={handleDateChange}
                 />
                 <ListItems
                     text="No Date"
@@ -194,6 +234,7 @@ const App = () => {
                     color="#9D9FA7"
                     handleCompleted={handleCompleted}
                     handleDelete={handleDelete}
+                    handleDateChange={handleDateChange}
                 />
             </div>
             <Completed

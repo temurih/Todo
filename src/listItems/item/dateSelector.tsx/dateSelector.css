@@ -1,0 +1,38 @@
+.drop-down {
+    position: absolute;
+    background: #ffffff;
+    box-shadow: 0px 4px 8px #ebeef5;
+    border-radius: 12px;
+}
+
+.date-selector {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 20px;
+    padding-right: 40px;
+    cursor: pointer;
+}
+
+.selected {
+    background: #f9fafb;
+}
+
+.regular-date-selector:hover,
+.undefined-selected {
+    background: #ebeef5;
+}
+.today-date-selector:hover,
+.today-selected {
+    color: #ff006e;
+    background: rgba(255, 0, 110, 0.12);
+}
+.tomorrow-date-selector:hover,
+.tomorrow-selected {
+    color: #fb5607;
+    background: rgba(251, 86, 7, 0.12);
+}
+.this-week-date-selector:hover,
+.this-week-selected {
+    color: #ffbe0b;
+    background: rgba(255, 190, 11, 0.12);
+}
