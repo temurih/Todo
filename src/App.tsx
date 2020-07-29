@@ -36,10 +36,7 @@ const App = () => {
     const [todayTodo, setTodayTodo] = useState<Todo[]>([]);
     const [tomorrowTodo, setTomorrowTodo] = useState<Todo[]>([]);
     const [thisWeekTodo, setThisWeekTodo] = useState<Todo[]>([]);
-
-    /* ----------------------------------------------*/
     const [thisMonthTodo, setThisMonthTodo] = useState<Todo[]>([]);
-
     const [unknownTodo, setUnknownTodo] = useState<Todo[]>([]);
     const [completed, setCompleted] = useState<Todo[]>([]);
 
