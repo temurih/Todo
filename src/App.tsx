@@ -79,10 +79,10 @@ const App = () => {
                     return;
                 case DATE.THIS_WEEK:
                     setThisWeekTodo((thisWeekTodo) => [...thisWeekTodo, todo]);
-                    break;
+                    return;
                 case DATE.THIS_MONTH:
                     setThisMonthTodo((thisMonthTodo) => [...thisMonthTodo, todo]);
-                    break;
+                    return;
 
                 default:
                     setUnknownTodo((t) => [...unknownTodo, todo]);
