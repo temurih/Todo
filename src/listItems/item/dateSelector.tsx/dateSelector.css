@@ -36,3 +36,8 @@
     color: #ffbe0b;
     background: rgba(255, 190, 11, 0.12);
 }
+.this-month-date-selector:hover,
+.this-month-selected {
+    color: #40E0D0;
+    background: rgba(255, 190, 11, 0.12);
+}

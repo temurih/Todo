@@ -20,6 +20,7 @@ export enum DATE {
     TODAY = 'today',
     TOMORROW = 'tomorrow',
     THIS_WEEK = 'this-week',
+    THIS_MONTH = 'this-month',
 }
 
 export const options = [DATE.TODAY, DATE.TOMORROW, DATE.THIS_WEEK, undefined];
@@ -35,6 +36,10 @@ const App = () => {
     const [todayTodo, setTodayTodo] = useState<Todo[]>([]);
     const [tomorrowTodo, setTomorrowTodo] = useState<Todo[]>([]);
     const [thisWeekTodo, setThisWeekTodo] = useState<Todo[]>([]);
+
+    /* ----------------------------------------------*/
+    const [thisMonthTodo, setThisMonthTodo] = useState<Todo[]>([]);
+
     const [unknownTodo, setUnknownTodo] = useState<Todo[]>([]);
     const [completed, setCompleted] = useState<Todo[]>([]);
 
@@ -50,13 +55,16 @@ const App = () => {
                 case DATE.THIS_WEEK:
                     setThisWeekTodo((thisWeekTodo) => [...thisWeekTodo, todo]);
                     break;
+                case DATE.THIS_MONTH:
+                    setThisMonthTodo((thisMonthTodo) => [...thisMonthTodo, todo]);
+                    break;
                 default:
                     setUnknownTodo((unknownTodo) => [...unknownTodo, todo]);
                     break;
             }
         },
         // eslint-disable-next-line
-        [setTodayTodo, setTomorrowTodo, setThisWeekTodo, setUnknownTodo],
+        [setTodayTodo, setTomorrowTodo, setThisWeekTodo, setThisMonthTodo, setUnknownTodo],
     );
 
     const handleUncompleted = useCallback(
@@ -73,8 +81,11 @@ const App = () => {
                     setTomorrowTodo((t) => [...tomorrowTodo, todo]);
                     return;
                 case DATE.THIS_WEEK:
-                    setThisWeekTodo((t) => [...thisWeekTodo, todo]);
-                    return;
+                    setThisWeekTodo((thisWeekTodo) => [...thisWeekTodo, todo]);
+                    break;
+                case DATE.THIS_MONTH:
+                    setThisMonthTodo((thisMonthTodo) => [...thisMonthTodo, todo]);
+                    break;
 
                 default:
                     setUnknownTodo((t) => [...unknownTodo, todo]);
@@ -114,6 +125,13 @@ const App = () => {
                 setThisWeekTodo([...thisWeekTodo]);
                 return;
 
+            case DATE.THIS_MONTH:
+                index = thisMonthTodo.findIndex((t) => t.id === todo.id);
+                if (index === -1) return;
+                thisMonthTodo.splice(index, 1);
+                setThisMonthTodo([...thisMonthTodo]);
+                return;
+
             default:
                 index = unknownTodo.findIndex((t) => t.id === todo.id);
                 if (index === -1) return;
@@ -146,7 +164,12 @@ const App = () => {
                     thisWeekTodo.splice(index, 1);
                     setThisWeekTodo([...thisWeekTodo]);
                     break;
-
+                case DATE.THIS_MONTH:
+                    index = thisMonthTodo.findIndex((t) => t.id === todo.id);
+                    if (index === -1) return;
+                    thisMonthTodo.splice(index, 1);
+                    setThisMonthTodo([...thisMonthTodo]);
+                    break;
                 default:
                     index = unknownTodo.findIndex((t) => t.id === todo.id);
                     if (index === -1) return;
@@ -183,6 +206,12 @@ const App = () => {
                 if (index === -1) return;
                 thisWeekTodo.splice(index, 1);
                 setThisWeekTodo([...thisWeekTodo]);
+                break;
+            case DATE.THIS_MONTH:
+                index = thisMonthTodo.findIndex((t) => t.id === todo.id);
+                if (index === -1) return;
+                thisMonthTodo.splice(index, 1);
+                setThisMonthTodo([...thisMonthTodo]);
                 break;
 
             default:
@@ -223,6 +252,15 @@ const App = () => {
                     iconUrl={thisWeekIcon}
                     list={thisWeekTodo}
                     color="#ffbe0b"
+                    handleCompleted={handleCompleted}
+                    handleDelete={handleDelete}
+                    handleDateChange={handleDateChange}
+                />
+                <ListItems
+                    text="This Month"
+                    iconUrl={thisWeekIcon} // no month icon present
+                    list={thisMonthTodo}
+                    color="#40E0D0"
                     handleCompleted={handleCompleted}
                     handleDelete={handleDelete}
                     handleDateChange={handleDateChange}

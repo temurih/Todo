@@ -60,6 +60,11 @@
     background: rgba(255, 190, 11, 0.12);
 }
 
+.this-month-item-select {
+    color: #40E0D0;
+    background: rgba(255, 190, 11, 0.12);
+}
+
 .item-actions .arrow-down {
     margin-left: 5.34px;
     margin-bottom: 2px;

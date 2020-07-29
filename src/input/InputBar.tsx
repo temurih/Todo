@@ -16,6 +16,7 @@ const InputBar: React.FC<InputBarProps> = ({ handleAdd }) => {
     const handleChangeToday = () => setDate(DATE.TODAY);
     const handleChangeTomorrow = () => setDate(DATE.TOMORROW);
     const handleChangeThisWeek = () => setDate(DATE.THIS_WEEK);
+    const handleChangeThisMonth = () => setDate(DATE.THIS_MONTH);
     const onKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
         if (e.which === ENTER_KEY_CODE) {
             onAdd();
@@ -85,6 +86,16 @@ const InputBar: React.FC<InputBarProps> = ({ handleAdd }) => {
                     }`}
                 >
                     This Week
+                </div>
+                <div
+                    onClick={handleChangeThisMonth}
+                    className={`capsule ${
+                        date === DATE.THIS_MONTH
+                            ? 'this-month-capsule'
+                            : 'regular-capsule'
+                    }`}
+                >
+                    This Month
                 </div>
                 <div
                     onClick={onAdd}
