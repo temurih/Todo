@@ -23,7 +23,7 @@ export enum DATE {
     THIS_MONTH = 'this-month',
 }
 
-export const options = [DATE.TODAY, DATE.TOMORROW, DATE.THIS_WEEK, undefined];
+export const options = [DATE.TODAY, DATE.TOMORROW, DATE.THIS_WEEK, DATE.THIS_MONTH, undefined];
 
 export interface Todo {
     id: number;
