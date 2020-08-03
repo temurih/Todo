@@ -11,6 +11,8 @@ export const getLabel = (date: DATE | undefined): string => {
             return 'Tomorrow';
         case DATE.THIS_WEEK:
             return 'This Week';
+        case DATE.THIS_MONTH:
+            return 'This Month';
 
         default:
             return 'No Date';
@@ -25,7 +27,8 @@ const getFillColor = (date: DATE | undefined): string => {
             return '#fb5607';
         case DATE.THIS_WEEK:
             return '#ffbe0b';
-
+        case DATE.THIS_MONTH:
+            return '#40E0D0';
         default:
             return '#6b6f7c';
     }

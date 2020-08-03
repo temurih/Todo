@@ -29,6 +29,9 @@
 .this-week-main-shadow {
     box-shadow: 0px 4px 8px rgba(255, 190, 11, 0.12);
 }
+.this-month-main-shadow {
+    box-shadow: 0px 4px 8px rgba(11, 255, 174, 0.12);
+}
 
 @media (max-width: 800px) {
     .main input {
@@ -61,6 +64,10 @@
     background: rgba(255, 190, 11, 0.08);
 }
 
+.this-month-capsule {
+    color: #40E0D0;
+    background: rgba(255, 190, 11, 0.08);
+}
 .capsule {
     display: inline-block;
     cursor: pointer;
@@ -87,6 +94,10 @@
 .this-week-plus {
     color: #fff;
     background: #ffbe0b;
+}
+.this-month-plus {
+    color: #fff;
+    background: #40E0D0;
 }
 
 .main input,
@@ -115,6 +126,9 @@
 }
 .this-week-input {
     caret-color: #ffbe0b;
+}
+.this-month-input {
+    caret-color: #40E0D0;
 }
 
 .list-wrapper {
